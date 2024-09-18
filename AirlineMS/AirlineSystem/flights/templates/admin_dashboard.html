@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Flight Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .dashboard-container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .menu .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            flex: 1 1 calc(25% - 20px);
+            max-width: calc(25% - 20px);
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .menu .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .menu .card i {
+            font-size: 24px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .menu .card h2 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .menu .card p {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <div class="header">
+            <h1>Welcome, {{ request.user.username }}</h1>
+        </div>
+
+        <div class="menu">
+            <div class="card">
+                <i class="fas fa-plane"></i>
+                <h2>List All Flight Details</h2>
+                <p>View all flight information</p>
+                <a href="{% url 'flight_list' %}" style="text-decoration: none; color: #007bff; font-weight: bold;">Go to List</a>
+            </div>
+            <div class="card">
+                <i class="fas fa-search"></i>
+                <h2>Search By ID</h2>
+                <p>Find flights by their unique ID</p>
+                <a href="{% url 'search_flight' %}" style="text-decoration: none; color: #007bff; font-weight: bold;">Search Now</a>
+            </div>
+            <div class="card">
+                <i class="fas fa-plus"></i>
+                <h2>Add Flight Details</h2>
+                <p>Include new flights in the system</p>
+                <a href="{% url 'flight_create' %}" style="text-decoration: none; color: #007bff; font-weight: bold;">Add Flight</a>
+            </div>
+            <div class="card">
+                <i class="fas fa-edit"></i>
+                <h2>Edit and Update Flight Details</h2>
+                <p>Modify existing flight information</p>
+                <a href="{% url 'flight_list' %}" style="text-decoration: none; color: #007bff; font-weight: bold;">Edit Flight</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

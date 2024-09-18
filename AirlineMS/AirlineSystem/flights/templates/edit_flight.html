@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Flight Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #333;
+            border-bottom: 2px solid #666;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="date"], input[type="time"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Flight Details</h2>
+
+        <!-- Update Flight Form -->
+        <form method="post" action="{% url 'edit_flight' flight.flight_id %}">
+            {% csrf_token %}
+
+            <label for="dep_airport">Departure Airport:</label>
+            <input type="text" id="dep_airport" name="dep_airport" value="{{ flight.dep_airport }}" required>
+
+            <label for="dep_date">Departure Date:</label>
+            <input type="date" id="dep_date" name="dep_date" value="{{ flight.dep_date }}" required>
+
+            <label for="dep_time">Departure Time:</label>
+            <input type="time" id="dep_time" name="dep_time" value="{{ flight.dep_time }}" required>
+
+            <label for="arr_airport">Arrival Airport:</label>
+            <input type="text" id="arr_airport" name="arr_airport" value="{{ flight.arr_airport }}" required>
+
+            <label for="arr_date">Arrival Date:</label>
+            <input type="date" id="arr_date" name="arr_date" value="{{ flight.arr_date }}" required>
+
+            <label for="arr_time">Arrival Time:</label>
+            <input type="time" id="arr_time" name="arr_time" value="{{ flight.arr_time }}" required>
+
+            <button type="submit" class="btn">Update Flight</button>
+        </form>
+
+        <!-- Delete Flight Form -->
+        <form method="post" action="{% url 'delete_flight' flight.flight_id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn delete-btn">Delete Flight</button>
+        </form>
+
+        <!-- Link to return to the flight list -->
+        <a href="{% url 'admin_dashboard' %}" class="btn">Back to Dashboard</a>
+    </div>
+</body>
+</html>

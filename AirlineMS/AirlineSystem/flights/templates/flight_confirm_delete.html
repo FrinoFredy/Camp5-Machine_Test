@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Flight</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; }
+        .container { max-width: 600px; margin: 50px auto; background-color: white; padding: 20px; }
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button.delete {
+            background-color: #ff4d4d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Delete Flight: {{ flight.flight_id }}</h2>
+        <p>Are you sure you want to delete this flight?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="delete">Yes, delete</button>
+        </form>
+        <a href="{% url 'search_flight' %}">Cancel</a>
+    </div>
+</body>
+</html>
